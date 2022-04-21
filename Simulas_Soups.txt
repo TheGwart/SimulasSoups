@@ -1,0 +1,210 @@
+using System;
+
+namespace myapp
+{
+    class Program
+    {
+        enum SoupType { Soup, Stew, Gumbo }
+        enum MainIngredient { Mushroom, Chicken, Carrot, Potato }
+        enum Seasoning { Spicy, Salty, Sweet }
+        static void Main(string[] args)
+        {
+            (Seasoning, MainIngredient, SoupType)[] soup = new (Seasoning, MainIngredient, SoupType)[3];
+
+            int soupIndex = 0;
+
+            soup[0] = MakeSoup();
+            PrintSoupName(soupIndex);
+            Console.WriteLine("\nPress any button to begin making the second soup.");
+            Console.ReadLine();
+
+            soup[1] = MakeSoup();
+            PrintSoupName(soupIndex);
+            soupIndex++;
+            PrintSoupName(soupIndex);
+            soupIndex = 0;
+            Console.WriteLine("\nPress any button to begin making the third soup.");
+            Console.ReadLine();
+
+            soup[2] = MakeSoup();
+            PrintSoupName(soupIndex);
+            soupIndex++;
+            PrintSoupName(soupIndex);
+            soupIndex++;
+            PrintSoupName(soupIndex);
+            Console.ReadLine();
+
+            Console.Clear();
+            Console.WriteLine("As you eat soup with Simula, she explains that she is the Caretaker of the Heart of Object-Oriented\nProgramming—the glowing green gem in the box. For thousands of clock cycles, she has held onto it,\nhoping that someday, a Programmer who understood object-oriented programming would appear to\nrestore the Fountain of Objects, destroyed by The Uncoded One, back to what it once was: the lifeblood\n\nShe tells you that to do this, you must gather the five keys of Object-Oriented Programming and make\nyour way to the Fountain of Objects, whose location is secret. She tells you you can discover its location\nif you visit the Catacombs of the Class and marks that location on your map.\n\nYou leave Simula's hovel behind and begin the quest to restore the Fountain of Objects to what it once\nwas. Your next destination: the Catacombs of the Class!\n\n");
+            Console.WriteLine("Press any button to continue.");
+            Console.ReadLine();
+
+            void PrintSoupName(int soupIndex)
+            {
+                if (soupIndex == 0)
+                {
+                    Console.Write($"The first soup is \"");
+                    SoupName(soupIndex);
+                }
+                else if (soupIndex == 1)
+                {
+                    Console.Write("\nThe second soup is \"");
+                    SoupName(soupIndex);
+                }
+                else if (soupIndex == 2)
+                {
+                    Console.Write("\nThe third soup is \"");
+                    SoupName(soupIndex);
+                }
+            }
+            void SoupName(int soupIndex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.Write($"{soup[soupIndex].Item1} ");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"{soup[soupIndex].Item2} ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write($"{soup[soupIndex].Item3}");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write(".\" ");
+            }
+        }
+
+        static (Seasoning, MainIngredient, SoupType) MakeSoup()
+        {
+            Console.Clear();
+            Seasoning seasoning = GetSeasoning();
+            Console.Clear();
+            MainIngredient mainIngredient = GetMainIngredient();
+            Console.Clear();
+            SoupType soupType = GetSoupType();
+            Console.Clear();
+
+            return (seasoning, mainIngredient, soupType);
+        }
+        static SoupType GetSoupType()
+        {
+            int userSoupTypeChoice;
+
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("Soup Type");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("----------------------------------------------------------------------------");
+                Console.WriteLine("Choose one of the following soup types by entering the corresponding number.");
+                Console.WriteLine("----------------------------------------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("1. Soup");
+                Console.WriteLine("2. Stew");
+                Console.WriteLine("3. Gumbo");
+                Console.Write("Choice: ");
+                userSoupTypeChoice = Convert.ToInt32(Console.ReadLine());
+
+                if (userSoupTypeChoice == 1)
+                {
+                    return SoupType.Soup;
+                }
+                else if (userSoupTypeChoice == 2)
+                {
+                    return SoupType.Stew;
+                }
+                else if (userSoupTypeChoice == 3)
+                {
+                    return SoupType.Gumbo;
+                }
+                else
+                {
+                    Console.Write("That choice is invalid! Press enter to choose again");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+            }
+        }
+        static MainIngredient GetMainIngredient()
+        {
+            int userMainIngredientChoice;
+
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Main Ingredient");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("----------------------------------------------------------------------------");
+                Console.WriteLine("Choose one of the following main ingredients by entering the corresponding number.");
+                Console.WriteLine("----------------------------------------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("1. Mushrooms");
+                Console.WriteLine("2. Chicken");
+                Console.WriteLine("3. Carrots");
+                Console.WriteLine("4. Potatoes");
+                Console.Write("Choice: ");
+                userMainIngredientChoice = Convert.ToInt32(Console.ReadLine());
+
+                if (userMainIngredientChoice == 1)
+                {
+                    return MainIngredient.Mushroom;
+                }
+                else if (userMainIngredientChoice == 2)
+                {
+                    return MainIngredient.Chicken;
+                }
+                else if (userMainIngredientChoice == 3)
+                {
+                    return MainIngredient.Carrot;
+                }
+                else if (userMainIngredientChoice == 4)
+                {
+                    return MainIngredient.Potato;
+                }
+                else
+                {
+                    Console.WriteLine("That choice is invalid! Press enter to choose again.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+            }
+        }
+        static Seasoning GetSeasoning()
+        {
+            int userSeasoningChoice;
+
+            while (true)
+            {
+
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("Seasoning");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("----------------------------------------------------------------------------");
+                Console.WriteLine("Choose one of the following seasonings by entering the corresponding number.");
+                Console.WriteLine("----------------------------------------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("1. Spicy");
+                Console.WriteLine("2. Salty");
+                Console.WriteLine("3. Sweet");
+                Console.Write("Choice: ");
+                userSeasoningChoice = Convert.ToInt32(Console.ReadLine());
+
+                if (userSeasoningChoice == 1)
+                {
+                    return Seasoning.Spicy;
+                }
+                else if (userSeasoningChoice == 2)
+                {
+                    return Seasoning.Salty;
+                }
+                else if (userSeasoningChoice == 3)
+                {
+                    return Seasoning.Sweet;
+                }
+                else
+                {
+                    Console.WriteLine("That choice is invalid! Press enter to choose again.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+            }
+        }
+
+    }
+}
